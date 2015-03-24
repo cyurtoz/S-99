@@ -4,7 +4,7 @@
 
 package com.cagatay.s99
 
-class Answers1 {
+class Lists1 {
 
   // 1
   def last(list:List[Any]) = list(list.size - 1)

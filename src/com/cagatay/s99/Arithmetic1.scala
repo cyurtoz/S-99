@@ -11,7 +11,7 @@
 
 package com.cagatay.s99
 
-class Answers3 {
+class Arithmetic1 {
 
   //31
   def isPrime(num:Int):Boolean = {

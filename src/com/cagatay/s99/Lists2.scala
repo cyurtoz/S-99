@@ -13,7 +13,7 @@ package com.cagatay.s99
 
 import scala.util.Random
 
-class Answers2 {
+class Lists2 {
 
   //15
   def duplicateN(n:Int, list:List[Any]) = list flatMap {x=>List.fill(n)(x)}
