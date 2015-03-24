@@ -56,6 +56,11 @@ class Answers2 {
   def randomPermute(list:List[Any]) = random(list.length, list)
 
   //26
-  def combinations(n:Int, list: List[Any]) = ???
+  def combinationsBuiltIn(n:Int, list: List[Any]) = list.combinations(n).toList
+  def combinations(n:Int, list: List[Any]) = list.toSet.subsets(n).toList
+
+  //27
+  def group3() = ???
+
 
 }
