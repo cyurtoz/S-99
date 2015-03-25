@@ -4,9 +4,9 @@
 
 package com.cagatay.s99
 
-import com.cagatay.s99.Lists1
+import com.cagatay.s99.Lists
 
-class Arithmetic1(val start: Int) {
+class Arithmetic(val start: Int) {
 
   //31
   def isPrime(num:Int):Boolean = {
@@ -59,7 +59,7 @@ class Arithmetic1(val start: Int) {
   //36
   def primeFactorMultiplicity() = {
     //code reuse :P
-    new Lists1().encode(primeFactors()).map(x => (x._2, x._1))
+    new Lists().encode(primeFactors()).map(x => (x._2, x._1))
   }
 
   //37
