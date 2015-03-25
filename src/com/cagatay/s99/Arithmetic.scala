@@ -4,7 +4,6 @@
 
 package com.cagatay.s99
 
-import com.cagatay.s99.Lists
 
 class Arithmetic(val start: Int) {
 
@@ -57,13 +56,48 @@ class Arithmetic(val start: Int) {
   }
 
   //36
-  def primeFactorMultiplicity() = {
-    //code reuse :P
-    new Lists().encode(primeFactors()).map(x => (x._2, x._1))
-  }
+  def primeFactorMultiplicity():List[(Int, Int)] = new Lists().encode(primeFactors()).map(x => (x._2, x._1))
 
   //37
-  def totientImproved() = ???
+  def totientImproved() = primeFactorMultiplicity().foldLeft(1) {
+    (x,y) =>  x*(y._1-1) * Math.pow(y._1, y._2-1).toInt
+  }
 
+  //38
+  def compareTotient():(Long, Long) = {
+    val e = System.currentTimeMillis()
+    totient()
+    val x = System.currentTimeMillis()
+    totientImproved()
+    val b = System.currentTimeMillis()
+    (x-e, b-x)
+  }
 
+  //39
+  def listPrimesInRange(r:Range):List[Int] = {
+    val stream = r.toStream
+    def primez(acc:Stream[Int], list:List[Int]):List[Int] = {
+      if(acc.isEmpty) list
+      else if(isPrime(acc.head)) primez(acc.tail.filter(_%acc.head!=0), list:+acc.head)
+      else primez(acc.tail, list)
+    }
+    primez(stream, List())
+  }
+
+  //40
+  def goldbach():(Int, Int) = {
+    val pair = listPrimesInRange(2 to start).combinations(2).filter(x => x.head + x(1) == start).toList
+    (pair.head.head, pair.head(1))
+  }
+
+  //??
+  def goldbachList() = listPrimesInRange(2 to start).combinations(2).filter(x => x.head + x(1) == start).toList.map(x=>(x.head, x(1)))
+
+  //41
+  def printGoldbachList(r:Range) = {
+    for (i <- r.head to r.last if i % 2 == 0)
+      yield listPrimesInRange(2 to start).combinations(2).filter(x => x.head + x(1) == i)
+        .toList
+        .map(x => new String(i + " = " + x.head + "+" + x(1)))
+  } flatten
 }

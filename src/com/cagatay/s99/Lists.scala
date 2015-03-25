@@ -6,7 +6,7 @@ package com.cagatay.s99
 
 import scala.util.Random
 
-class Lists {
+class Lists[T] {
 
   // 1
   def last(list:List[Any]) = list(list.size - 1)
@@ -74,7 +74,7 @@ class Lists {
   }
 
   //9
-  def pack(list:List[Any]):List[List[Any]] = {
+  def pack(list:List[T]):List[List[T]] = {
     if (list.isEmpty) List(List())
     else {
       val (packed, next) = list span { _ == list.head }
@@ -84,10 +84,10 @@ class Lists {
   }
 
   //10
-  def encode(list:List[Any]) = pack(list).map(x=>(x.size, x.head))
+  def encode(list:List[T]) = pack(list).map(x=>(x.size, x.head))
 
   //11
-  def encodeModified(list:List[Any]) = encode(list).map(x=> if(x._1 == 1) x._2 else x)
+    def encodeModified(list:List[T]) = encode(list).map(x=> if(x._1 == 1) x._2 else x)
 
   //12
   def decode(list:List[(Int, Any)]):List[Any] =
