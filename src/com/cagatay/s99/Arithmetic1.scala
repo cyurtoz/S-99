@@ -4,7 +4,9 @@
 
 package com.cagatay.s99
 
-class Arithmetic1 {
+import com.cagatay.s99.Lists1
+
+class Arithmetic1(val start: Int) {
 
   //31
   def isPrime(num:Int):Boolean = {
@@ -30,4 +32,38 @@ class Arithmetic1 {
     }
     process(divisors, List())
   }
+
+  //32
+  def gcd(n:Int, m:Int):Int = {
+    if(n%m == 0) m
+    else gcd(m, gcd(n, n%m))
+  }
+
+  //33
+  def isCoprimeTo(n:Int) = gcd(start, n) == 1
+
+  //34
+  def totient() = (for (i<-1 until start if isCoprimeTo(i)) yield i).length
+
+  //35
+  def primeFactors():List[Int] = {
+    def primez(acc:Int, divisor:Int, primex:List[Int]):List[Int] = {
+      if(acc == 1) primex
+      else if (!isPrime(divisor)) primez(acc, divisor+1, primex)
+      else if(acc%divisor == 0) primez(acc/divisor, divisor, primex:+divisor)
+      else primez(acc, divisor+1, primex)
+    }
+    primez(start, 2, List())
+  }
+
+  //36
+  def primeFactorMultiplicity() = {
+    //code reuse :P
+    new Lists1().encode(primeFactors()).map(x => (x._2, x._1))
+  }
+
+  //37
+  def totientImproved() = ???
+
+
 }
